@@ -85,7 +85,7 @@ This R package closely mirrors the functionality of the Python isimip-client:
 | `requests` | `httr2` |
 | `click` | Not implemented (CLI) |
 | `rich` | `cli` |
-| Class methods | R6 methods |
+| Class methods | S4 generics/methods |
 | `json.loads()` | `jsonlite::fromJSON()` |
 | `pathlib.Path` | `fs::path()` |
 | `hashlib.sha512()` | `digest::digest()` |

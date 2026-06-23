@@ -26,7 +26,7 @@ isimip-client/
 ├── .gitignore.R             # R-specific gitignore patterns
 │
 ├── R/                       # R source code
-│   ├── client.R             # ISIMIPClient R6 class (786 lines)
+│   ├── client.R             # ISIMIPClient S4 class (786 lines)
 │   └── isimip-package.R     # Package-level documentation
 │
 ├── tests/                   # Test suite
@@ -46,7 +46,7 @@ isimip-client/
 
 ### Key Features Implemented
 
-#### 1. Core ISIMIPClient Class (R6)
+#### 1. Core ISIMIPClient Class (S4)
 - **HTTP Client**: Built on `httr2` with retry logic and error handling
 - **Authentication**: Support for username/password authentication
 - **Custom headers**: Flexible header configuration
@@ -93,7 +93,7 @@ isimip-client/
 | Component | R Package | Purpose |
 |-----------|-----------|---------|
 | HTTP Client | `httr2` | Modern HTTP requests with retry logic |
-| OOP | `R6` | Object-oriented class design |
+| OOP | `methods` | S4 class and generic/method design |
 | CLI | `cli` | User-friendly console output |
 | File Paths | `fs` | Cross-platform file operations |
 | JSON | `jsonlite` | JSON parsing and generation |
@@ -191,8 +191,8 @@ Test coverage areas:
 2. **Basic Usage**:
    ```r
    library(isimip)
-   client <- ISIMIPClient$new()
-   datasets <- client$datasets(query = "gfdl-esm4 ssp370 pr")
+   client <- ISIMIPClient()
+   datasets <- datasets(client, query = "gfdl-esm4 ssp370 pr")
    ```
 
 3. **Read the vignette**:

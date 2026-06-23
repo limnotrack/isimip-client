@@ -24,13 +24,13 @@ devtools::install_github("limnotrack/isimip-client")
 
 ## Usage
 
-The package provides the `ISIMIPClient` R6 class which can be used in scripts or notebooks:
+The package provides the `ISIMIPClient` S4 class with generic methods that can be used in scripts or notebooks:
 
 ```r
 library(isimip)
 
 # Create a client instance
-client <- ISIMIPClient$new()
+client <- ISIMIPClient()
 ```
 
 ### Querying Datasets and Files
@@ -39,15 +39,17 @@ The methods of the `client` object can be used to perform queries to the ISIMIP 
 
 ```r
 # Search the ISIMIP repository using a search string
-response <- client$datasets(query = "gfdl-esm4 ssp370 pr")
+response <- datasets(client, query = "gfdl-esm4 ssp370 pr")
 
 # Search the ISIMIP repository for a specific subtree
-response <- client$datasets(
+response <- datasets(
+  client,
   path = "ISIMIP3b/InputData/climate/atmosphere/bias-adjusted/global/daily/ssp370/GFDL-ESM4/"
 )
 
 # Search using specifiers
-response <- client$datasets(
+response <- datasets(
+  client,
   simulation_round = "ISIMIP3b",
   product = "InputData",
   climate_forcing = "gfdl-esm4",
@@ -73,41 +75,41 @@ The ISIMIP Repository provides a "Configure download" feature for operations on 
 
 ```r
 # Select data for a bounding box
-response <- client$select_bbox(
+response <- select_bbox(client,
   paths = c("path/to/file1.nc", "path/to/file2.nc"),
   west = -20, east = 20, south = -10, north = 10,
   poll = 4  # Poll every 4 seconds
 )
 
 # Select data for a point location
-response <- client$select_point(
+response <- select_point(client,
   paths = c("path/to/file.nc"),
   lat = 6.25, lon = 18.17,
   poll = 4
 )
 
 # Mask data for a bounding box
-response <- client$mask_bbox(
+response <- mask_bbox(client,
   paths = c("path/to/file.nc"),
   west = -20, east = 20, south = -10, north = 10,
   poll = 4
 )
 
 # Mask data for a country
-response <- client$mask_country(
+response <- mask_country(client,
   paths = c("path/to/file.nc"),
   country = "bra",  # Brazil
   poll = 4
 )
 
 # Mask land-only areas
-response <- client$mask_landonly(
+response <- mask_landonly(client,
   paths = c("path/to/file.nc"),
   poll = 4
 )
 
 # Cut out a rectangular area
-response <- client$cutout_bbox(
+response <- cutout_bbox(client,
   paths = c("path/to/file.nc"),
   west = -20, east = 20, south = -10, north = 10,
   poll = 4
@@ -137,7 +139,7 @@ operations <- list(
 )
 
 # Submit job and poll every 4 seconds
-response <- client$submit_job(
+response <- submit_job(client,
   paths = paths,
   operations = operations,
   poll = 4
@@ -150,7 +152,7 @@ Once a job is finished, you can download the result:
 
 ```r
 if (!is.null(response$file_url)) {
-  client$download(response$file_url, path = "downloads")
+  download(client, response$file_url, path = "downloads")
 }
 ```
 
@@ -160,10 +162,10 @@ The package supports both v1 and v2 of the Files API. By default, v2 is used:
 
 ```r
 # Use v2 (default)
-client <- ISIMIPClient$new()
+client <- ISIMIPClient()
 
 # Use v1 (legacy)
-client <- ISIMIPClient$new(
+client <- ISIMIPClient(
   files_api_url = "https://files.isimip.org/api/v1",
   files_api_version = "v1"
 )
@@ -174,7 +176,7 @@ client <- ISIMIPClient$new(
 If you need authentication:
 
 ```r
-client <- ISIMIPClient$new(
+client <- ISIMIPClient(
   auth = list(username = "your_username", password = "your_password")
 )
 ```

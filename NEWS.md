@@ -3,7 +3,7 @@
 ## New Features
 
 * Initial release of the R port of the Python isimip-client library
-* Implemented `ISIMIPClient` R6 class for interacting with ISIMIP Repository API
+* Implemented `ISIMIPClient` S4 class for interacting with ISIMIP Repository API
 * Support for querying datasets and files from the ISIMIP repository
 * Support for Files API v2 operations:
   * `select_bbox()` - Select data for a bounding box
@@ -28,7 +28,7 @@
 ## Implementation Details
 
 * Uses `httr2` for modern HTTP operations
-* Uses `R6` for object-oriented design
+* Uses `methods`/S4 for object-oriented design
 * Uses `cli` for user-friendly console output
 * Uses `fs` for cross-platform file operations
 * Includes retry logic and error handling

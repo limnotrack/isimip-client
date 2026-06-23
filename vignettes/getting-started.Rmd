@@ -31,27 +31,27 @@ library(isimip)
 
 ## Creating a Client
 
-The main interface is the `ISIMIPClient` R6 class:
+The main interface is the `ISIMIPClient` S4 class:
 
 ```{r}
 library(isimip)
 
 # Create a client with default settings
-client <- ISIMIPClient$new()
+client <- ISIMIPClient()
 ```
 
 You can customize the API endpoints and version:
 
 ```{r}
 # Use custom URLs
-client <- ISIMIPClient$new(
+client <- ISIMIPClient(
   data_url = "https://data.isimip.org/api/v1",
   files_api_url = "https://files.isimip.org/api/v2",
   files_api_version = "v2"
 )
 
 # Add authentication if needed
-client <- ISIMIPClient$new(
+client <- ISIMIPClient(
   auth = list(username = "your_username", password = "your_password")
 )
 ```
@@ -64,7 +64,7 @@ Search using a query string:
 
 ```{r}
 # Search for datasets
-datasets <- client$datasets(query = "gfdl-esm4 ssp370 pr")
+datasets <- datasets(client, query = "gfdl-esm4 ssp370 pr")
 
 # Check the number of results
 cat("Found", datasets$count, "datasets\n")
@@ -78,7 +78,7 @@ str(datasets$results[[1]])
 Use specific parameters to narrow your search:
 
 ```{r}
-datasets <- client$datasets(
+datasets <- datasets(client,
   simulation_round = "ISIMIP3b",
   product = "InputData",
   climate_forcing = "gfdl-esm4",
@@ -92,7 +92,7 @@ datasets <- client$datasets(
 Search for datasets in a specific path:
 
 ```{r}
-datasets <- client$datasets(
+datasets <- datasets(client,
   path = "ISIMIP3b/InputData/climate/atmosphere/bias-adjusted/global/daily/ssp370/GFDL-ESM4/"
 )
 ```
@@ -103,7 +103,7 @@ By default, the client fetches all results. For manual pagination:
 
 ```{r}
 # Get first page
-page1 <- client$datasets(
+page1 <- datasets(client,
   query = "gfdl-esm4 ssp370 pr",
   paginate = TRUE,
   page = 1,
@@ -111,7 +111,7 @@ page1 <- client$datasets(
 )
 
 # Get second page
-page2 <- client$datasets(
+page2 <- datasets(client,
   query = "gfdl-esm4 ssp370 pr",
   paginate = TRUE,
   page = 2,
@@ -125,7 +125,7 @@ Similar methods are available for searching files:
 
 ```{r}
 # Search for files
-files <- client$files(
+files <- files(client,
   simulation_round = "ISIMIP3b",
   climate_forcing = "gfdl-esm4",
   climate_scenario = "ssp370",
@@ -133,7 +133,7 @@ files <- client$files(
 )
 
 # Get a specific file by ID
-file_detail <- client$file(pk = "some-uuid-here")
+file_detail <- file(client, pk = "some-uuid-here")
 ```
 
 ## Processing Operations
@@ -146,7 +146,7 @@ Extract data for specific regions or points:
 
 ```{r}
 # Select data for a bounding box
-result <- client$select_bbox(
+result <- select_bbox(client,
   paths = c(
     "ISIMIP3b/InputData/climate/atmosphere/bias-adjusted/global/daily/ssp370/GFDL-ESM4/gfdl-esm4_r1i1p1f1_w5e5_ssp370_pr_global_daily_2015_2020.nc"
   ),
@@ -156,7 +156,7 @@ result <- client$select_bbox(
 )
 
 # Select data for a point
-result <- client$select_point(
+result <- select_point(client,
   paths = c("path/to/file.nc"),
   lat = 6.25, lon = 18.17,
   poll = 4
@@ -169,7 +169,7 @@ Apply masks to limit data to specific regions:
 
 ```{r}
 # Mask to a bounding box
-result <- client$mask_bbox(
+result <- mask_bbox(client,
   paths = c("path/to/file.nc"),
   west = -20, east = 20,
   south = -10, north = 10,
@@ -177,14 +177,14 @@ result <- client$mask_bbox(
 )
 
 # Mask to a country (using ISO 3166-1 alpha-3 code)
-result <- client$mask_country(
+result <- mask_country(client,
   paths = c("path/to/file.nc"),
   country = "bra",  # Brazil
   poll = 4
 )
 
 # Mask to land areas only
-result <- client$mask_landonly(
+result <- mask_landonly(client,
   paths = c("path/to/file.nc"),
   poll = 4
 )
@@ -196,7 +196,7 @@ Extract subsets of data:
 
 ```{r}
 # Cut out a rectangular region
-result <- client$cutout_bbox(
+result <- cutout_bbox(client,
   paths = c("path/to/file.nc"),
   west = 5.8, east = 10.6,
   south = 45.8, north = 47.9,
@@ -204,7 +204,7 @@ result <- client$cutout_bbox(
 )
 
 # Cut out data at a point
-result <- client$cutout_point(
+result <- cutout_point(client,
   paths = c("path/to/file.nc"),
   lat = 46.5, lon = 8.0,
   poll = 4
@@ -216,7 +216,7 @@ result <- client$cutout_point(
 You can use custom shapefiles for masking:
 
 ```{r}
-result <- client$mask_shape(
+result <- mask_shape(client,
   paths = c("path/to/file.nc"),
   shape = "~/data/shapes/countries.zip",
   layer = 5,  # Layer index or name
@@ -240,7 +240,7 @@ operations <- list(
   )
 )
 
-result <- client$submit_job(
+result <- submit_job(client,
   paths = c("path/to/file.nc"),
   operations = operations,
   poll = 4
@@ -254,13 +254,13 @@ Once a job is complete, download the result:
 ```{r}
 if (!is.null(result$file_url)) {
   # Download to current directory
-  client$download(result$file_url)
+  download(client, result$file_url)
   
   # Download to specific directory
-  client$download(result$file_url, path = "downloads")
+  download(client, result$file_url, path = "downloads")
   
   # Download with validation and extraction
-  client$download(
+  download(client,
     result$file_url,
     path = "downloads",
     validate = TRUE,  # Validate checksum
@@ -290,7 +290,7 @@ For backward compatibility, you can use the v1 API:
 
 ```{r}
 # Create v1 client
-client_v1 <- ISIMIPClient$new(
+client_v1 <- ISIMIPClient(
   files_api_url = "https://files.isimip.org/api/v1",
   files_api_version = "v1"
 )
@@ -318,7 +318,7 @@ The package provides informative error messages:
 
 ```{r, error = TRUE}
 # Trying to use v2 method with v1 client
-client_v1 <- ISIMIPClient$new(files_api_version = "v1")
+client_v1 <- ISIMIPClient(files_api_version = "v1")
 client_v1$select_bbox(
   paths = c("path/to/file.nc"),
   west = -20, east = 20, south = -10, north = 10

@@ -23,7 +23,7 @@ Imports:
     cli,
     rlang,
     fs,
-    R6,
+    methods,
     digest
 Suggests:
     testthat (>= 3.0.0),
