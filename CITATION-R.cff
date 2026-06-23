@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "isimip: R Client for the ISIMIP Repository API"
+version: 0.1.0
+authors:
+  - family-names: "Moore"
+    given-names: "Tadhg"
+    email: "tadhg.moore@example.com"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Klar"
+    given-names: "Jochen"
+    email: "jochen.klar@pik-potsdam.de"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+repository-code: "https://github.com/limnotrack/isimip-client"
+url: "https://limnotrack.github.io/isimip-client/"
+abstract: >-
+  A thin client library to use the API of the ISIMIP repository
+  using R and httr2. This is an R port of the Python isimip-client library.
+keywords:
+  - climate
+  - data
+  - api
+  - isimip
+  - r-package
+license: MIT
