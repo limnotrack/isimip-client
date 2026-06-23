@@ -1,0 +1,14 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^LICENSE\.md$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.pre-commit-config\.yaml$
+^isimip_client$
+^notebooks$
+^pyproject\.toml$
+^README-python\.md$
+^CITATION\.cff$
