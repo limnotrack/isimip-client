@@ -12,27 +12,19 @@ Description: A thin client library to use the API of the ISIMIP repository
     and download results from the ISIMIP climate impact data repository.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-Depends:
-    R (>= 4.1.0)
-Imports:
-    httr2 (>= 1.0.0),
-    jsonlite,
-    cli,
-    rlang,
-    fs,
-    methods,
-    digest,
-    curl
-Suggests:
-    testthat (>= 3.0.0),
-    mockery,
-    knitr,
-    rmarkdown,
-    covr
+Depends: R (>= 4.1.0)
+Imports: httr2 (>= 1.0.0), jsonlite, cli, rlang, fs, methods, digest
+Suggests: testthat (>= 3.0.0), mockery, knitr, rmarkdown, covr
 VignetteBuilder: knitr
-URL: https://github.com/limnotrack/isimip-client, https://limnotrack.github.io/isimip-client/
+URL: https://github.com/limnotrack/isimip-client,
+        https://limnotrack.github.io/isimip-client/
 BugReports: https://github.com/limnotrack/isimip-client/issues
 Config/testthat/edition: 3
+NeedsCompilation: no
+Packaged: 2026-06-23 04:42:44 UTC; runner
+Author: Tadhg Moore [aut, cre],
+  Jochen Klar [aut] (Original Python implementation)
+Maintainer: Tadhg Moore <tadhg.moore@example.com>
+Built: R 4.3.3; ; 2026-06-23 04:42:49 UTC; unix

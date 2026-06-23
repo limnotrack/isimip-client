@@ -1,0 +1,90 @@
+* using log directory ‘/home/runner/work/isimip-client/isimip-client/isimip.Rcheck’
+* using R version 4.3.3 (2024-02-29)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 13.2.0-23ubuntu3) 13.2.0
+    GNU Fortran (Ubuntu 13.2.0-23ubuntu3) 13.2.0
+* running under: Ubuntu 24.04.4 LTS
+* using session charset: UTF-8
+* using option ‘--no-manual’
+* checking for file ‘isimip/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘isimip’ version ‘0.1.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .gitignore.R
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘isimip’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+Missing or unexported object: ‘httr2::curl_file’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘ISIMIPClient’ ‘cutout’ ‘cutout_bbox’ ‘cutout_point’ ‘dataset’
+  ‘datasets’ ‘download’ ‘file’ ‘files’ ‘mask’ ‘mask_bbox’
+  ‘mask_country’ ‘mask_landonly’ ‘mask_mask’ ‘mask_shape’ ‘select’
+  ‘select_bbox’ ‘select_point’ ‘submit_job’
+Undocumented S4 classes:
+  ‘ISIMIPClient’
+Undocumented S4 methods:
+  generic '$' and siglist 'ISIMIPClient'
+  generic 'cutout' and siglist 'ISIMIPClient'
+  generic 'cutout_bbox' and siglist 'ISIMIPClient'
+  generic 'cutout_point' and siglist 'ISIMIPClient'
+  generic 'dataset' and siglist 'ISIMIPClient'
+  generic 'datasets' and siglist 'ISIMIPClient'
+  generic 'download' and siglist 'ISIMIPClient'
+  generic 'file' and siglist 'ISIMIPClient'
+  generic 'files' and siglist 'ISIMIPClient'
+  generic 'mask' and siglist 'ISIMIPClient'
+  generic 'mask_bbox' and siglist 'ISIMIPClient'
+  generic 'mask_country' and siglist 'ISIMIPClient'
+  generic 'mask_landonly' and siglist 'ISIMIPClient'
+  generic 'mask_mask' and siglist 'ISIMIPClient'
+  generic 'mask_shape' and siglist 'ISIMIPClient'
+  generic 'select' and siglist 'ISIMIPClient'
+  generic 'select_bbox' and siglist 'ISIMIPClient'
+  generic 'select_point' and siglist 'ISIMIPClient'
+  generic 'submit_job' and siglist 'ISIMIPClient'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... NONE
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ... NONE
+  ‘getting-started.Rmd’ using ‘UTF-8’... OK
+* checking re-building of vignette outputs ... OK
+* DONE
+Status: 2 WARNINGs, 1 NOTE

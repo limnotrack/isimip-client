@@ -19,7 +19,6 @@
 #' @importFrom fs path path_expand dir_create file_size
 #' @importFrom digest digest
 #' @importFrom jsonlite fromJSON
-#' @importFrom curl form_file
 #'
 #' @examples
 #' \dontrun{
@@ -735,7 +734,7 @@ methods::setMethod(
         cli::cli_abort("Upload file not found: {upload_path}")
       }
 
-      parts[[basename(expanded_path)]] <- curl::form_file(expanded_path)
+      parts[[basename(expanded_path)]] <- httr2::curl_file(expanded_path)
     }
 
     req <- httr2::req_body_multipart(req, !!!parts)
