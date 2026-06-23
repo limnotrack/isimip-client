@@ -1,0 +1,37 @@
+Package: isimip
+Type: Package
+Title: Client for the ISIMIP Repository API
+Version: 0.1.0
+Authors@R: c(
+    person("Tadhg", "Moore", email = "tadhg.moore@example.com", role = c("aut", "cre")),
+    person("Jochen", "Klar", role = "aut", comment = "Original Python implementation")
+    )
+Description: A thin client library to use the API of the ISIMIP repository 
+    (https://data.isimip.org) using R. This package provides methods to query 
+    datasets and files, submit processing jobs (cutout, mask, select operations), 
+    and download results from the ISIMIP climate impact data repository.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends:
+    R (>= 4.1.0)
+Imports:
+    httr2 (>= 1.0.0),
+    jsonlite,
+    cli,
+    rlang,
+    fs,
+    R6,
+    digest
+Suggests:
+    testthat (>= 3.0.0),
+    mockery,
+    knitr,
+    rmarkdown,
+    covr
+VignetteBuilder: knitr
+URL: https://github.com/limnotrack/isimip-client, https://limnotrack.github.io/isimip-client/
+BugReports: https://github.com/limnotrack/isimip-client/issues
+Config/testthat/edition: 3

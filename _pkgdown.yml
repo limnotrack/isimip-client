@@ -1,0 +1,73 @@
+url: https://limnotrack.github.io/isimip-client/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+home:
+  title: ISIMIP API Client for R
+  description: A thin client library to use the API of the ISIMIP repository using R and httr2
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    home: ~
+    intro:
+      text: Get Started
+      href: articles/getting-started.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Getting Started
+        href: articles/getting-started.html
+    news:
+      text: News
+      href: news/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/limnotrack/isimip-client
+      aria-label: GitHub
+
+reference:
+  - title: Main Client Class
+    desc: The primary interface for interacting with the ISIMIP API
+    contents:
+      - ISIMIPClient
+
+  - title: Dataset and File Queries
+    desc: Methods for searching datasets and files
+    contents:
+      - matches("datasets")
+      - matches("files")
+
+  - title: Files API v2 Operations
+    desc: Modern API methods for data processing (v2)
+    contents:
+      - matches("select_")
+      - matches("mask_")
+      - matches("cutout_")
+      - matches("submit_job")
+
+  - title: Files API v1 Operations
+    desc: Legacy API methods (v1)
+    contents:
+      - matches("^mask$")
+      - matches("^select$")
+      - matches("^cutout$")
+
+  - title: Download Operations
+    desc: Methods for downloading processed data
+    contents:
+      - matches("download")
+
+footer:
+  structure:
+    left: [developed_by, built_with]
+    right: [package]
+  components:
+    package: "isimip version {version}"
